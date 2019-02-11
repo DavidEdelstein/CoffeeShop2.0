@@ -17,10 +17,7 @@ namespace CoffeeShopApp2._0.Controllers
             {
                 using (var client = new HttpClient())
                 {
-                    var a = $"http://forecast.weather.gov/MapClick.php?lat={lat}&lon={lon}&FcstType=json";
-                    var b = client.GetAsync(a).ConfigureAwait(false).GetAwaiter().GetResult();
-                    var c = b.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
-
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36");
                     var jsonString = client.GetStringAsync($"https://forecast.weather.gov/MapClick.php?lat={lat}&lon={lon}&FcstType=json").ConfigureAwait(false).GetAwaiter().GetResult();
                     var model = JsonConvert.DeserializeObject<WeeklyForecast>(jsonString);
                     return View(model);

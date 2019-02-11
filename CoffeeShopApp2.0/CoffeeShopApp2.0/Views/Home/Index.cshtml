@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CoffeeShopApp2._0.Models.WeeklyForecast
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -16,8 +18,42 @@
     <input type="submit" name="Submit" value="Submit" />
 </form>
 
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Time.StartPeriodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data.Temperature)
+            </th>
+        </tr>
+        @*use a for loop to go through the list*@
+        @foreach (var item in Model.Time.StartPeriodName)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item)
+                </td>
+            </tr>
+        }
+
+        @foreach (var item in Model.Data.Temperature)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item)
+
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+
 <div class="row">
     <div class="col-md-4">
-       
+
     </div>
 </div>
